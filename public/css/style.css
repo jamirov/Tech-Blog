@@ -1,0 +1,41 @@
+.container{
+    background-color: rgb(194, 206, 180);
+}
+
+.card-header,.nav-link,.blockquote-footer{
+    color:  rgb(194, 206, 180)!important;
+}
+.techblog{
+    background-color:rgb(194, 206, 180);
+    display: block;
+    border-radius: 10px;
+    margin: 10px;  
+    box-shadow: 5px 5px 1px 1px rgb(143, 153, 132);
+}
+#navbarNav,{
+    display: inline;
+    height: 5em;
+    color: rgb(194, 206, 180)!important;
+
+}
+
+h4{
+    padding: 5px 10px 5px 10px;
+    display:block;
+}
+
+.card{
+margin: 30px;
+}
+#loginbtn,#signupbtn,#submitbtn,#createtbtn,#deletebtn,#updatebtn{
+    width: 100%;
+    margin: 5px;
+
+#newpost{
+    margin: 200px ;
+    margin-bottom: 100px;
+}
+.mypost,#post{
+    margin: 30px;
+    color: white;
+}
