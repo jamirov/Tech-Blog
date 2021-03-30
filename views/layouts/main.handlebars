@@ -4,19 +4,19 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Home</title>
+        <title>Tech Blog</title>
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
             integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="../public/css/style.css" />
+        <link rel="stylesheet" href="/css/style.css" />
     </head>
     <body>
+        <!-- Nav Bar -->
         <div class="container">
-            <!-- Nav Bar -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+            <nav class="navbar navbar-expand-lg navbar-light flex-row-reverse bg-dark">
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
@@ -28,49 +28,20 @@
                             <a class="nav-link" href="#">Dashboard</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="#">Login</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#">Logout</a>
                         </li>
                     </ul>
                 </div>
                 <div class="techblog">
-                    <h4>Your Dashboard</h4>
+                    <h4>The Tech Blog</h4>
                 </div>
             </nav>
 
-            <!-- Link to existing posts -->
-            <div class="alert alert-dark mypost " role="alert">
-                <a href="#" id="post" class="alert-link ">Object-Relational Mapping</a>
-                <span class="float-right" >05/8/2020</span>
-              </div>
-<!-- Update the existing post card -->
+        {{{body}}}
 
-<div class="card">
-    <div class="card-header bg-dark">
-        <h5> Edit Post</h5>
-    </div>
-    <div class="card-body">
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Title</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlTextarea1">Content</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
-          </div>
-          <button type="button" id="updatebtn" class="btn btn-dark">Update Post</button>
-          <button type="button" id="deletebtn" class="btn btn-dark">Delete</button>
-        
-    </div>
-</div>
-
-
-
-
-
-            <!-- Create new post button -->
-            <div class="text-center" id="newpost">
-                <button type="button" class="btn btn-dark">+ New Post</button>
-            </div>
         </div>
         <script
             src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
