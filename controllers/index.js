@@ -43,22 +43,22 @@ router.get('/login', async (req, res) => {
     res.status(500).json(err);
   }
 });
-router.get('/signup', async (req, res) => {
+router.get('/signup', (req, res) => {
+  try {
+    res.render('signup');
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+router.post('/signup', async (req, res) => {
     try {
-      // Get all projects and JOIN with user data
-      // const projectData = await Post.findAll({
-      //   include: [
-      //     {
-      //       model: User,
-      //       attributes: ['name'],
-      //     },
-      //   ],
-      // });
+      const userData = await User.create(req.body);
+      req.session.save(() => {
+        req.session.user_id = userData.id;
+        req.session.logged_in = true;
   
-      // Serialize data so the template can read it
-      // const projects = projectData.map((project) => project.get({ plain: true }));
-  
-      // Pass serialized data and session flag into template
+        res.status(200).json(userData);
+      });
       res.render('signup');
     } catch (err) {
       res.status(500).json(err);
