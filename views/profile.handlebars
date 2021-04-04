@@ -1,0 +1,28 @@
+ 
+ <h1>Profile</h1>
+ 
+  {{#each posts as |post|}}
+
+<div class="card">
+    <div class="card-header bg-dark">
+        <h5>{{post.title}}</h5>
+        <p class="blockquote-footer float-right blog">
+            Posted by <cite title="Source Title">{{post.user.name}}</cite> on
+            <span> {{format_date post.date_created}} </span>
+        </p>
+    </div>
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <p>
+                {{post.content}}
+            </p>
+        </blockquote>
+    </div>
+</div>
+{{/each}}
+  
+  
+ <div class="text-center" id="newpost">
+                <button  type="button" class="btn btn-dark"> <a href="/newPost">+ New Post</a></button>
+            </div>
+        </div>
