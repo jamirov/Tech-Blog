@@ -27,22 +27,34 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/profile">Dashboard</a>
                         </li>
+                         {{#if loggedIn}}
                         <li class="nav-item">
+                            <a class="nav-link" id="logout" href="/logout">Logout</a>
+                        </li>
+                        {{else}}
+                         <li class="nav-item">
                             <a class="nav-link" href="/login">Login</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="logout" href="">Logout</a>
-                        </li>
+                        {{/if}}
+                       
                     </ul>
                 </div>
+                {{#if loggedIn}}
+                <div class="techblog">
+                    <h4> Your Dashboard</h4>
+                </div>
+                {{else}}
                 <div class="techblog">
                     <h4>The Tech Blog</h4>
                 </div>
+                {{/if}}
             </nav>
-
         {{{body}}}
         </div>
-        
+    
+    {{#if loggedIn}}
+  <script src="/js/logout.js"></script>
+    {{/if}}
         <script
             src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 
 // Profile route after logging in..
 
-router.get('/profile', async (req, res) => {
+router.get('/profile', withAuth, async (req, res) => {
   try {
     
     const postData = await Post.findAll({
@@ -40,7 +40,7 @@ router.get('/profile', async (req, res) => {
     // Serialize data so the template can read it
     const posts = postData.map((project) => project.get({ plain: true }));
     // Pass serialized data and session flag into template
-    res.render('profile', {posts});
+    res.render('profile', {posts, loggedIn: req.session.loggedIn});
   } catch (err) {
     res.status(500).json(err);
   }
@@ -52,7 +52,7 @@ router.get('/profile', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { name: req.body.name } });
-
+console.log(userData);
     if (!userData) {
       res
         .status(400)
@@ -68,18 +68,19 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect name or password, please try again' });
       return;
     }
-    res.status(200);
-    req.session.save(() => {
+      req.session.save(() => {
       req.session.user_id = userData.id;
-      req.session.logged_in = true;
-      
+      req.session.loggedIn = true;
+      res.status(200);
       res.json({ user: userData, message: 'You are now logged in!' });
     });
+    
 
   } catch (err) {
     res.status(400).json(err);
   }
 });
+
 
 
 
@@ -113,7 +114,7 @@ router.post('/signup', async (req, res) => {
       const userData = await User.create(req.body);
       req.session.save(() => {
         req.session.user_id = userData.id;
-        req.session.logged_in = true;
+        req.session.loggedIn = true;
   
         res.status(200).json(userData);
       });
@@ -125,9 +126,9 @@ router.post('/signup', async (req, res) => {
 
 // display card to create a new post
 
-router.get('/newPost', async (req, res) => {
+router.get('/newPost', withAuth, async (req, res) => {
   try {
-    res.render('newPostCard');
+    res.render('newPostCard', {loggedIn: req.session.loggedIn});
   } catch (err) {
     res.status(500).json(err);
   }
@@ -135,11 +136,12 @@ router.get('/newPost', async (req, res) => {
 
 // Create a new post 
 
-router.post('/newPost', async (req, res) => {
+router.post('/newPost', withAuth, async (req, res) => {
   try {
     const postData = await Post.create({
-      ...req.body, 
-      user_id:req.session.userId
+      title:req.body.title,
+      content: req.body.content,
+      user_id: req.session.user_id
     });
 
     res.status(200).json(postData);
@@ -151,7 +153,7 @@ router.post('/newPost', async (req, res) => {
 
 // Log out route
 router.post('/logout', (req, res) => {
-  if (req.session.logged_in) {
+  if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
     });
