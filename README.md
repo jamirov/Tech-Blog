@@ -22,9 +22,9 @@ If you are installing locally, please create the database in schema.sql file, th
 
 ## Links
 
-[ This is the link to Heroku site](https://www.google.com)
+[ This is the link to Heroku site](https://techlarblog.herokuapp.com/)
 
-[This is the link to GitHub repository](https://www.google.com)
+[This is the link to GitHub repository](https://github.com/jamirov/Tech-Blog)
 
 
 ## Questions
